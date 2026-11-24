@@ -35,12 +35,11 @@
     <Compile Include="OrderStatus.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="StatusNames.cs" />
-    <Compile Include="OrderNotificationService.cs" />
+    <Compile Include="IOrderObserver.cs" />
     <Compile Include="ClientNotifier.cs" />
     <Compile Include="WarehouseNotifier.cs" />
     <Compile Include="AccountingNotifier.cs" />
     <Compile Include="DeliveryNotifier.cs" />
-    <Compile Include="INotificationRecipient.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

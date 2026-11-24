@@ -2,9 +2,9 @@ using System;
 
 namespace ShopNotifications
 {
-    class DeliveryNotifier : INotificationRecipient
+    class DeliveryNotifier : IOrderObserver
     {
-        public void Notify(Order order)
+        public void Update(Order order)
         {
             if (order.Status == OrderStatus.ReadyForShipping)
                 Console.WriteLine("[Служба доставки] Забрати замовлення №" + order.Id);

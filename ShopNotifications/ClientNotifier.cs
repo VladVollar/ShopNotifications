@@ -2,9 +2,9 @@ using System;
 
 namespace ShopNotifications
 {
-    class ClientNotifier : INotificationRecipient
+    class ClientNotifier : IOrderObserver
     {
-        public void Notify(Order order)
+        public void Update(Order order)
         {
             Console.WriteLine("[Клієнт] Замовлення №" + order.Id + ": " + StatusNames.Get(order.Status));
         }

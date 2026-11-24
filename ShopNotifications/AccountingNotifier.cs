@@ -2,9 +2,9 @@ using System;
 
 namespace ShopNotifications
 {
-    class AccountingNotifier : INotificationRecipient
+    class AccountingNotifier : IOrderObserver
     {
-        public void Notify(Order order)
+        public void Update(Order order)
         {
             if (order.Status == OrderStatus.Paid)
                 Console.WriteLine("[Бухгалтерія] Оплачено замовлення №" + order.Id);

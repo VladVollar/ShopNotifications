@@ -2,9 +2,9 @@ using System;
 
 namespace ShopNotifications
 {
-    class WarehouseNotifier : INotificationRecipient
+    class WarehouseNotifier : IOrderObserver
     {
-        public void Notify(Order order)
+        public void Update(Order order)
         {
             if (order.Status == OrderStatus.Confirmed)
                 Console.WriteLine("[Склад] Підготувати замовлення №" + order.Id);
