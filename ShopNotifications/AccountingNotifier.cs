@@ -2,7 +2,7 @@ using System;
 
 namespace ShopNotifications
 {
-    class AccountingNotifier
+    class AccountingNotifier : INotificationRecipient
     {
         public void Notify(Order order)
         {

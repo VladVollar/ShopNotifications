@@ -2,10 +2,10 @@ namespace ShopNotifications
 {
     class OrderNotificationService
     {
-        private readonly ClientNotifier client = new ClientNotifier();
-        private readonly WarehouseNotifier warehouse = new WarehouseNotifier();
-        private readonly AccountingNotifier accounting = new AccountingNotifier();
-        private readonly DeliveryNotifier delivery = new DeliveryNotifier();
+        private readonly INotificationRecipient client = new ClientNotifier();
+        private readonly INotificationRecipient warehouse = new WarehouseNotifier();
+        private readonly INotificationRecipient accounting = new AccountingNotifier();
+        private readonly INotificationRecipient delivery = new DeliveryNotifier();
 
         public void Notify(Order order)
         {
