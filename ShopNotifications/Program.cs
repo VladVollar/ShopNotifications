@@ -3,30 +3,10 @@ using System.Text;
 
 namespace ShopNotifications
 {
-    enum OrderStatus
-    {
-        New,
-        Confirmed,
-        Paid,
-        ReadyForShipping,
-        Delivered,
-        Canceled
-    }
-
-    class Order
-    {
-        public int Id { get; set; }
-        public OrderStatus Status { get; set; }
-
-        public Order(int id)
-        {
-            Id = id;
-            Status = OrderStatus.New;
-        }
-    }
-
     class Program
     {
+        static readonly OrderNotificationService notifications = new OrderNotificationService();
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -50,65 +30,9 @@ namespace ShopNotifications
                 return;
 
             order.Status = newStatus;
-            Console.WriteLine("Новий стан: " + GetStatusName(newStatus));
-            NotifyClient(order);
-
-            if (newStatus == OrderStatus.Confirmed)
-                NotifyWarehouse(order, false);
-
-            if (newStatus == OrderStatus.Paid)
-                NotifyAccounting(order, false);
-
-            if (newStatus == OrderStatus.ReadyForShipping)
-                NotifyDelivery(order);
-
-            if (newStatus == OrderStatus.Canceled)
-            {
-                NotifyWarehouse(order, true);
-                NotifyAccounting(order, true);
-            }
-
+            Console.WriteLine("Новий стан: " + StatusNames.Get(newStatus));
+            notifications.Notify(order);
             Console.WriteLine();
-        }
-
-        static void NotifyClient(Order order)
-        {
-            Console.WriteLine("[Клієнт] Замовлення №" + order.Id + ": " + GetStatusName(order.Status));
-        }
-
-        static void NotifyWarehouse(Order order, bool canceled)
-        {
-            if (canceled)
-                Console.WriteLine("[Склад] Скасовано замовлення №" + order.Id);
-            else
-                Console.WriteLine("[Склад] Підготувати замовлення №" + order.Id);
-        }
-
-        static void NotifyAccounting(Order order, bool canceled)
-        {
-            if (canceled)
-                Console.WriteLine("[Бухгалтерія] Скасовано замовлення №" + order.Id);
-            else
-                Console.WriteLine("[Бухгалтерія] Оплачено замовлення №" + order.Id);
-        }
-
-        static void NotifyDelivery(Order order)
-        {
-            Console.WriteLine("[Служба доставки] Забрати замовлення №" + order.Id);
-        }
-
-        static string GetStatusName(OrderStatus status)
-        {
-            switch (status)
-            {
-                case OrderStatus.New: return "Нове";
-                case OrderStatus.Confirmed: return "Підтверджене";
-                case OrderStatus.Paid: return "Оплачене";
-                case OrderStatus.ReadyForShipping: return "Готове до відправлення";
-                case OrderStatus.Delivered: return "Доставлене";
-                case OrderStatus.Canceled: return "Скасоване";
-                default: return "Невідомий стан";
-            }
         }
     }
 }

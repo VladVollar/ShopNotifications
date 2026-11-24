@@ -32,6 +32,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="OrderStatus.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="StatusNames.cs" />
+    <Compile Include="OrderNotificationService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
