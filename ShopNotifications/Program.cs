@@ -8,7 +8,10 @@ namespace ShopNotifications
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            RunDemo();
+            if (args.Length > 0 && args[0] == "--extended")
+                RunExtended();
+            else
+                RunDemo();
         }
 
         internal static void RunDemo()
@@ -27,6 +30,20 @@ namespace ShopNotifications
             Console.WriteLine("Замовлення №1002");
             ChangeStatus(secondOrder, OrderStatus.Confirmed);
             ChangeStatus(secondOrder, OrderStatus.Canceled);
+        }
+
+        internal static void RunExtended()
+        {
+            Order order = new Order(2001);
+            ManagerNotifier manager = new ManagerNotifier();
+            order.Subscribe(new ClientNotifier());
+            order.Subscribe(manager);
+
+            Console.WriteLine("Замовлення №2001");
+            ChangeStatus(order, OrderStatus.Confirmed);
+
+            order.Unsubscribe(manager);
+            ChangeStatus(order, OrderStatus.Paid);
         }
 
         static void SubscribeStandardRecipients(Order order)
