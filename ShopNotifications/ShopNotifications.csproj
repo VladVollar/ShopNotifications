@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F41B4D02-5643-4ED7-9A19-6BD30373C47F}</ProjectGuid>
+    <ProjectGuid>{6BDB18E4-13A7-4D94-9147-29B0382F1CF9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ShopNotifications</RootNamespace>
     <AssemblyName>ShopNotifications</AssemblyName>
@@ -41,6 +41,7 @@
     <Compile Include="AccountingNotifier.cs" />
     <Compile Include="DeliveryNotifier.cs" />
     <Compile Include="ManagerNotifier.cs" />
+    <Compile Include="SelfTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

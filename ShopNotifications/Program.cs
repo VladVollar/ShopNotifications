@@ -5,13 +5,16 @@ namespace ShopNotifications
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
+            if (args.Length > 0 && args[0] == "--test")
+                return SelfTests.Run();
             if (args.Length > 0 && args[0] == "--extended")
                 RunExtended();
             else
                 RunDemo();
+            return 0;
         }
 
         internal static void RunDemo()
